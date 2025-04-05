@@ -1,4 +1,10 @@
-﻿namespace NotificationService.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BuildingBlock.Shared.Models
 {
     public class LeaveEvent
     {

@@ -18,13 +18,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//builder.Services.AddMassTransit(x =>
+//{
+//    x.UsingRabbitMq((ctx, cfg) =>
+//    {
+//        cfg.Host("rabbitmq://localhost"); // Replace with your RabbitMQ config
+//    });
+//});
+
 builder.Services.AddMassTransit(x =>
 {
     x.UsingRabbitMq((ctx, cfg) =>
     {
-        cfg.Host("rabbitmq://localhost"); // Replace with your RabbitMQ config
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
     });
 });
+
 
 var app = builder.Build();
 

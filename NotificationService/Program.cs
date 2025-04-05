@@ -11,7 +11,11 @@ builder.Services.AddMassTransit(x =>
 
     x.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("rabbitmq://localhost"); // Ensure RabbitMQ is running
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
 
         cfg.ReceiveEndpoint("leave-notification-queue", e =>
         {

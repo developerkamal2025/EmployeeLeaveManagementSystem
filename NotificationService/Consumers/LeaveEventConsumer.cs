@@ -1,5 +1,5 @@
-﻿using MassTransit;
-using NotificationService.Models;
+﻿using BuildingBlock.Shared.Models;
+using MassTransit;
 
 namespace NotificationService.Consumers
 {

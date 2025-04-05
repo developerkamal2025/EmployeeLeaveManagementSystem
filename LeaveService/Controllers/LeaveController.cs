@@ -1,5 +1,5 @@
-﻿using LeaveService.Entity;
-using LeaveService.Models;
+﻿using BuildingBlock.Shared.Models;
+using LeaveService.Entity;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
