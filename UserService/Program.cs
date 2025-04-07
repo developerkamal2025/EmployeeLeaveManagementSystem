@@ -33,7 +33,7 @@ builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWTSet
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplicationWithJWT", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserService WebAPI", Version = "v1" });
 
     //Define JWT authentication scheme
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

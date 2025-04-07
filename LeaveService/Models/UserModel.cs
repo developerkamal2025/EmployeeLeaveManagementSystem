@@ -1,4 +1,4 @@
-﻿namespace UserService.Models
+﻿namespace LeaveService.Models
 {
     public class UserModel
     {
@@ -6,13 +6,5 @@
         public string UserName { get; set; }
         public string Role { get; set; }
         public int BalancedLeave { get; set; }
-    }
-
-    public class RegisterUser
-    {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-
     }
 }

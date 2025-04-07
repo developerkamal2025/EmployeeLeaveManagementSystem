@@ -8,7 +8,8 @@ namespace BuildingBlock.Shared.Models
 {
     public class LeaveEvent
     {
-        public string UserEmail { get; set; } = string.Empty;
+        public string FromUser { get; set; } = string.Empty;
+        public string ToUser { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
     }
 }

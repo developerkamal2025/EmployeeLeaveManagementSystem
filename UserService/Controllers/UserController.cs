@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BuildingBlock.Shared.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserService.Authentication;
 using UserService.Models;
@@ -24,8 +25,7 @@ namespace UserService.Controllers
             {
                 UserName = user.UserName,
                 Password = user.Password,
-                Role = user.Role,
-                BalanceLeave = 12
+                Role = user.Role
             });
 
             if (id == 0)
@@ -58,7 +58,7 @@ namespace UserService.Controllers
             }
         }
 
-        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "HR,Manager")]
         [HttpGet("GetUserList")]
         public async Task<ActionResult> GetUserList()
         {
@@ -81,6 +81,23 @@ namespace UserService.Controllers
             try
             {
                 var user = await _userService.GetUserById(id);
+
+                return Ok(new { Status = 200, User = user });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        [Authorize]
+        [HttpGet("GetUserByEmail")]
+        public async Task<ActionResult> GetUserByEmail(string email)
+        {
+            try
+            {
+                var user = await _userService.GetUserByEmail(email);
 
                 return Ok(new { Status = 200, User = user });
             }

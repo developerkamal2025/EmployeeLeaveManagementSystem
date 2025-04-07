@@ -9,6 +9,7 @@ namespace UserService.Services
         Task<UserModel> Login(string userName, string password);
         Task<List<UserModel>> GetUserList();
         Task<UserModel> GetUserById(int id);
+        Task<UserModel> GetUserByEmail(string email);
     }
 
     public class UserService : IUserService
@@ -22,18 +23,17 @@ namespace UserService.Services
 
         public async Task<int> Register(UserEntity user)
         {
-            int id = _Users.LastOrDefault()?.Id ?? 1;
+            int id = _Users.LastOrDefault()?.Id ?? 0;
             bool isExist = _Users.Any(x => x.UserName == user.UserName);
 
             if (!isExist)
             {
                 _Users.Add(new UserEntity()
                 {
-                    Id = id,
+                    Id = ++id,
                     UserName = user.UserName,
                     Password = user.Password,
-                    Role = user.Role,
-                    BalanceLeave = user.BalanceLeave,
+                    Role = user.Role
                 });
             }
             else
@@ -78,6 +78,20 @@ namespace UserService.Services
             UserModel? user = new UserModel();
             
             user = _Users.Where(x => x.Id == id).Select(x => new UserModel()
+            {
+                Id = x.Id,
+                UserName = x.UserName,
+                Role = x.Role
+            }).FirstOrDefault();
+            
+            return user;
+        }
+
+        public async Task<UserModel> GetUserByEmail(string Email)
+        {
+            UserModel? user = new UserModel();
+            
+            user = _Users.Where(x => x.UserName == Email).Select(x => new UserModel()
             {
                 Id = x.Id,
                 UserName = x.UserName,

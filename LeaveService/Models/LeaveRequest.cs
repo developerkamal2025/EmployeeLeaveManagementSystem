@@ -1,4 +1,6 @@
-﻿namespace LeaveService.Entity
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LeaveService.Models
 {
     public class Leave
     {
@@ -10,6 +12,7 @@
     }
     public class LeaveRequest
     {
+        [EmailAddress]
         public string EmployeeEmail { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

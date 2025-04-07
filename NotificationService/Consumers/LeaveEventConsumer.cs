@@ -1,4 +1,5 @@
-﻿using BuildingBlock.Shared.Models;
+﻿using BuildingBlock.Shared;
+using BuildingBlock.Shared.Models;
 using MassTransit;
 
 namespace NotificationService.Consumers
@@ -8,8 +9,9 @@ namespace NotificationService.Consumers
         public Task Consume(ConsumeContext<LeaveEvent> context)
         {
             var message = context.Message;
-            // send email/SMS
-            Console.WriteLine($"Sending notification to {message.UserEmail}");
+            string body = "Leave " + message.Status;
+            CommonService.SendMail(message.ToUser, "Leave", body);
+
             return Task.CompletedTask;
         }
     }
